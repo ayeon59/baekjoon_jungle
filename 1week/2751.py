@@ -44,6 +44,23 @@ for i in range(n):
 #         j -= 1
 #     a[j] = key
 
+#셸정렬
+# def shell_sort(a) :
+#     n = len(a)
+#     h = 1
+
+#     while h < n //9 :
+#         h = h*3+1
+#     while h > 0:
+#         for i in range(h,n):
+#             j = i - h
+#             tmp = a[i]
+#             while j>=0 and a[j] > tmp:
+#                 a[j+h]=a[j]
+#                 j -= h
+#             a[j+h] = tmp
+#         h//=3
+
 
 #퀵정렬
 # def quick_sort(a,left,right):
@@ -64,7 +81,7 @@ for i in range(n):
 #         if right > pl :
 #             return quick_sort(1,pl,right)
         
-
+#병합정렬
 # def merge_sort(a,left,right):
 #     if left<right:
 #         center = (left+right) //2
@@ -95,31 +112,7 @@ for i in range(n):
 # buff = [None]*n
 # merge_sort(a,0,n-1)
 
-
-# def heap_sort(a):
-#     def down_heap(a,left,right):
-#         temp = a[left] 
-#         parent = left
-
-#         while parent < (right+1)//2:
-#             cl = parent * 2 + 1
-#             cr = cl + 1
-#             child = cr if cr <= right and a[cr] > a[cl] else cl
-#             if temp >= a[child] :
-#                 break
-#             a[parent] = a[child]
-#             parent = child
-#         a[parent] = temp
-
-#     n = len(a)
-
-#     for i in range((n-1)//2,-1,-1):
-#         down_heap(a,i,n-1)
-#     for i in range(n-1,0,-1):
-#         a[0], a[i] = a[i],a[0]
-#         down_heap(a,0,i-1)
-
-
+#힙정렬
 # def heap_sort(a):
 #     def down_heap(a,left,right):
 #         temp = a[left]
@@ -143,16 +136,20 @@ for i in range(n):
 #         a[0],a[i] = a[i],a[0]
 #         down_heap(a,0,i-1)
 
-def fsort(a,max) :
-    n = len(a)
+#도수정렬
+# def fsort(a,max) :
+#     n = len(a)
 
-    f = [0]*(max+1)
-    b = [0]*n
+#     f = [0]*(max+1)
+#     b = [0]*n
 
-    for i in range(n) : f[a[i]] += 1
-    for i in range(1,max+1): f[i] += f[i-1]
-    for i in range(n-1,-1,-1): b[f[a[i]]-1] = a[i]
-    for i in range(n): a[i] = b[i]
+#     for i in range(n) : f[a[i]] += 1
+#     for i in range(1,max+1): f[i] += f[i-1]
+#     for i in range(n-1,-1,-1): b[f[a[i]]-1] = a[i]
+#     for i in range(n): a[i] = b[i]
+#       
+#fsort(a,max(a))
 
-fsort(a,max(a))
+
+
 print(a)
