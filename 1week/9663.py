@@ -1,19 +1,21 @@
 n = int(input())
 count = 0
 
-def dfs(x, y, step):
+col_used = [False] * n
+diag_left = [False] * (2 * n)  
+diag_right = [False] * (2 * n)
+
+def dfs(row):
     global count
-    if step == n:
+    if row == n:
         count += 1
         return
+    for col in range(n):
+        if col_used[col] or diag_left[row + col] or diag_right[row - col + n]:
+            continue
+        col_used[col] = diag_left[row + col] = diag_right[row - col + n] = True
+        dfs(row + 1)
+        col_used[col] = diag_left[row + col] = diag_right[row - col + n] = False
 
-    for i in range(n):
-        for j in range(n):
-            if i != x and j != y and x + y != i + j and y - x != j - i:
-                dfs(i, j, step + 1)
-
-for i in range(n):
-    for j in range(n):
-        dfs(i, j, 0)
-
+dfs(0)
 print(count)

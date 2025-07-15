@@ -1,23 +1,30 @@
-x = 0
-y = 0
-step = 0
-n,r,c = map(int,input().split())
+n, r, c = map(int, input().split())
+count = 0
+x, y = 0, 0
+
+while n > 0:
+    size = 2 ** (n - 1)
+    square = size * size
+
     
-while(1):
-    if x==r and y==c:
-        print(step)
-        break
-    if step%4==0:
-        y += 1
-        step += 1
-    elif step%4==1:
-        x += 1
-        y -= 1
-        step += 1
-    elif step%4==2:
-        y += 1
-        step += 1
-    else :
-        x -= 1
-        y += 1
-        step += 1
+    if r < x + size and c < y + size:
+        pass 
+    
+    elif r < x + size and c >= y + size:
+        count += square
+        y += size
+
+    
+    elif r >= x + size and c < y + size:
+        count += square * 2
+        x += size
+
+
+    else:
+        count += square * 3
+        x += size
+        y += size
+
+    n -= 1
+
+print(count)
