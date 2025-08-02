@@ -14,9 +14,9 @@ while pop_num != k and num:
     target = int(num[0])
     num = num[1:]
     top = answer[-1]
-    #새로 넣을 숫자가 더 큰 경우
+    
     if top < target :
-        #새로 넣을 숫자보다 더 작으면 다 팝
+        
         while answer and answer[-1] < target and pop_num < k:
             answer.pop()
             pop_num += 1    

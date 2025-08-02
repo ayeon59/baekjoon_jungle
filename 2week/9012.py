@@ -14,6 +14,7 @@ for _ in range(n):
         else :
             if not stack : 
                 isDone = True
+                print("NO")
                 break
             stack.pop()
         
@@ -22,4 +23,3 @@ for _ in range(n):
             print("YES")
         else :
             print("NO")
-
