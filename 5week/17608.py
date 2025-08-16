@@ -14,6 +14,5 @@ for i in range(n):
     stick.append(num)
         
     
-    
 
 print(len(stick))
