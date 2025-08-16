@@ -1,21 +1,30 @@
-#_2468:안전영역
-
-"""
-1. 내린 비의 양 "이하"의 모든 지점은 물에 잠긴다.
-2. 물에 잠기지 않는 영역을 구한다 
-3. 비가 얼마나 올 지 모른다.
--> 1&2번 조건 체크하면서 BFS()
--> BFS 한 사이클 돌면 영역 개수 +1
-"""
-#영역 크기 입력
 import sys
-from collections import deque
+sys.setrecursionlimit(200_000)
 
-n = int(input())
-rain = []
-visited = [[False] * (n) for _ in range(n)]
-for i in range(n):
-    rain.append(list(map(int,input().split())))
-queue = deque((0,0))
+n = int(sys.stdin.readline().strip())
+graph = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+max_h = max(max(row) for row in graph)
 
+dx, dy = [-1, 1, 0, 0], [0, 0, -1, 1]
 
+def dfs(x, y, h):
+   
+    visited[x][y] = True
+    for dir in range(4):
+        nx, ny = x + dx[dir], y + dy[dir]
+        if 0 <= nx < n and 0 <= ny < n:
+            if graph[nx][ny] > h and not visited[nx][ny]:
+                dfs(nx, ny, h)
+
+answer = 0
+for h in range(max_h):                  
+    visited = [[False]*n for _ in range(n)]
+    cnt = 0
+    for i in range(n):
+        for j in range(n):
+            if graph[i][j] > h and not visited[i][j]:
+                dfs(i, j, h)
+                cnt += 1             
+    answer = max(answer, cnt)
+
+print(max(answer, 1))                  
